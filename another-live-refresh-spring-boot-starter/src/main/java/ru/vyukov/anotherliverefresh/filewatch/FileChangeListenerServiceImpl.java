@@ -26,7 +26,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import lombok.extern.slf4j.Slf4j;
-import net.contentobjects.jnotify.JNotifyException;
 
 @Slf4j
 public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
@@ -57,8 +56,9 @@ public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 	}
 
 	@PreDestroy
-	public void destroy() throws JNotifyException {
+	public void destroy() throws IOException {
 		run = false;
+		// see watchService.close(); after run(){ while(run){...}}
 	}
 
 	public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
@@ -101,6 +101,12 @@ public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 			}
 			// Сброс ключа важен для получения последующих уведомлений
 			key.reset();
+		}
+
+		try {
+			watchService.close();
+		} catch (IOException e) {
+			log.error("watchService close problem", e);
 		}
 	}
 

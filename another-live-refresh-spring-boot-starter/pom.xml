@@ -45,15 +45,6 @@
 		</dependency>
 
 
-
-		<dependency>
-			<groupId>net.contentobjects.jnotify</groupId>
-			<artifactId>jnotify</artifactId>
-			<version>0.94</version>
-		</dependency>
-
-
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
