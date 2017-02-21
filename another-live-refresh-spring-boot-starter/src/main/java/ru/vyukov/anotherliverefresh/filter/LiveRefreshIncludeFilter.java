@@ -1,4 +1,4 @@
-package ru.vyukov.anotherliverefresh.autoconfigure;
+package ru.vyukov.anotherliverefresh.filter;
 
 import java.io.IOException;
 
@@ -31,9 +31,7 @@ public class LiveRefreshIncludeFilter implements Filter {
 		if (response.getContentType() != null && response.getContentType().contains("text/html")) {
 			content = content.replace("</head>", REFRESH_CODE + "\n</head>");
 		}
-
 		response.getWriter().write(content);
-
 
 	}
 

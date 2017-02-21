@@ -1,21 +1,20 @@
-package ru.vyukov.anotherliverefresh.autoconfigure;
+package ru.vyukov.anotherliverefresh.ws;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.springframework.boot.devtools.classpath.ClassPathChangedEvent;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.vyukov.anotherliverefresh.filewatch.FileChangeListener;
 
 @Slf4j
-public class LiveRefreshConnectionHandler extends TextWebSocketHandler {
+public class LiveRefreshConnectionHandler extends TextWebSocketHandler implements FileChangeListener {
 
 	private Set<WebSocketSession> sessions = ConcurrentHashMap.newKeySet();
 
@@ -39,24 +38,17 @@ public class LiveRefreshConnectionHandler extends TextWebSocketHandler {
 		super.handleTextMessage(session, message);
 	}
 
-	@EventListener
-	public void onContextRefreshed(ContextRefreshedEvent event) {
-		log.debug("context refreshed");
-		sessions.forEach(this::sendRefreshMessage);
-	}
-
-	@EventListener
-	public void onClassPathChanged(ClassPathChangedEvent event) {
-		log.debug("classpath resources changed");
-		sessions.forEach(this::sendRefreshMessage);
-	}
-
 	private void sendRefreshMessage(WebSocketSession session) {
 		try {
 			session.sendMessage(refreshMessage);
 		} catch (IOException e) {
 			log.warn("send refresh message error", e);
 		}
+	}
+
+	@Override
+	public void fileChange(Path fullPach) {
+		sessions.forEach(this::sendRefreshMessage);
 	}
 
 }

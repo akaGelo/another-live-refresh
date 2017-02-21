@@ -1,4 +1,4 @@
-package ru.vyukov.anotherliverefresh.autoconfigure;
+package ru.vyukov.anotherliverefresh.filter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
