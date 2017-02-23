@@ -20,7 +20,7 @@ public class AnotherLiveRefreshSpringSecurityAutoConfiguration implements WebSec
 	@Override
 	public void configure(WebSecurity builder) throws Exception {
 		log.debug("/refresh.js add ignore spring security");
-		builder.ignoring().antMatchers("/alr/refresh.js", "/alr/refresh");
+		builder.ignoring().antMatchers("/alr/refresh.js", "/alr/help.html", "/alr/refresh");
 	}
 
 }

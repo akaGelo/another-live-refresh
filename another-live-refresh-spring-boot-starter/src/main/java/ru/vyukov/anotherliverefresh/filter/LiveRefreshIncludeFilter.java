@@ -31,6 +31,8 @@ public class LiveRefreshIncludeFilter implements Filter {
 		if (response.getContentType() != null && response.getContentType().contains("text/html")) {
 			content = content.replace("</head>", REFRESH_CODE + "\n</head>");
 		}
+
+		response.setContentLength(content.length());
 		response.getWriter().write(content);
 
 	}

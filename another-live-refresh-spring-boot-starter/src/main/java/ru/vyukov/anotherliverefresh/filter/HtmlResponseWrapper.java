@@ -6,99 +6,72 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
 public class HtmlResponseWrapper extends HttpServletResponseWrapper {
 
-    private ByteArrayOutputStream capture;
-    
-    private ServletOutputStream output;
-    
-    private PrintWriter writer;
+	private ByteArrayOutputStream capture;
 
-    public HtmlResponseWrapper(HttpServletResponse response) {
-        super(response);
-        capture = new ByteArrayOutputStream(response.getBufferSize());
-    }
+	private ServletOutputStream output;
 
-    @Override
-    public ServletOutputStream getOutputStream() {
-        if (writer != null) {
-            throw new IllegalStateException(
-                    "getWriter() has already been called");
-        }
+	private PrintWriter writer;
 
-        if (output == null) {
-            output = new ServletOutputStream() {
-                @Override
-                public void write(int b) throws IOException {
-                    capture.write(b);
-                }
+	public HtmlResponseWrapper(HttpServletResponse response) {
+		super(response);
+		capture = new ByteArrayOutputStream(response.getBufferSize());
+	}
 
-                @Override
-                public void flush() throws IOException {
-                    capture.flush();
-                }
+	@Override
+	public ServletOutputStream getOutputStream() {
+		if (writer != null) {
+			throw new IllegalStateException("getWriter() has already been called");
+		}
 
-                @Override
-                public void close() throws IOException {
-                    capture.close();
-                }
+		if (output == null) {
+			output = new ByteArrayServletOutputStream(capture);
+		}
 
-                @Override
-                public boolean isReady() {
-                    return false;
-                }
+		return output;
+	}
 
-                @Override
-                public void setWriteListener(WriteListener arg0) {
-                }
-            };
-        }
+	@Override
+	public PrintWriter getWriter() throws IOException {
+		if (output != null) {
+			throw new IllegalStateException("getOutputStream() has already been called");
+		}
 
-        return output;
-    }
+		if (writer == null) {
+			String characterEncoding = getCharacterEncoding();
+			writer = new PrintWriter(new OutputStreamWriter(capture, characterEncoding));
+		}
 
-    @Override
-    public PrintWriter getWriter() throws IOException {
-        if (output != null) {
-            throw new IllegalStateException(
-                    "getOutputStream() has already been called");
-        }
+		return writer;
+	}
 
-        if (writer == null) {
-            writer = new PrintWriter(new OutputStreamWriter(capture,
-                    getCharacterEncoding()));
-        }
+	@Override
+	public void flushBuffer() throws IOException {
+		super.flushBuffer();
 
-        return writer;
-    }
+		if (writer != null) {
+			writer.flush();
+		} else if (output != null) {
+			output.flush();
+		}
+	}
 
-    @Override
-    public void flushBuffer() throws IOException {
-        super.flushBuffer();
+	public byte[] getAsBytes() throws IOException {
+		if (writer != null) {
+			writer.close();
+		} else if (output != null) {
+			output.close();
+		}
 
-        if (writer != null) {
-            writer.flush();
-        } else if (output != null) {
-            output.flush();
-        }
-    }
+		return capture.toByteArray();
+	}
 
-    public byte[] getAsBytes() throws IOException {
-        if (writer != null) {
-            writer.close();
-        } else if (output != null) {
-            output.close();
-        }
-
-        return capture.toByteArray();
-    }
-
-    public String getAsString() throws IOException {
-        return new String(getAsBytes(), getCharacterEncoding());
-    }
+	public String getAsString() throws IOException {
+		return new String(getAsBytes(), getCharacterEncoding());
+	}
 
 }

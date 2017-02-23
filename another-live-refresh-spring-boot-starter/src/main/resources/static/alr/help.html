@@ -1,0 +1,65 @@
+<html>
+<head>
+
+<style type="text/css">
+pre{
+	border: 1px black double;
+	max-width: 350px;
+}
+
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
+
+.black {
+	color: black;
+}
+
+.bold {
+	font-weight: bold;
+}
+</style>
+
+</head>
+<body>
+	<h3>Another Live Refresh Docks</h3>
+
+
+
+	Disable live refresh in Production
+
+	<br />
+		<br />
+	<b>application.yml</b>
+
+	<div class="green">
+		<pre>
+<font class="red">#Default profile</font>
+
+liverefresh:
+  enable: <font class="black bold">true</font>    
+
+<font class="red">
+---
+</font>
+<font class="red">#Production profile</font>
+ 
+spring:
+  profiles: <font class="black bold">production</font>
+
+  
+liverefresh:
+  enable: <font class="black bold">false</font>
+</pre>
+	</div>
+
+
+
+
+
+</body>
+</html>
