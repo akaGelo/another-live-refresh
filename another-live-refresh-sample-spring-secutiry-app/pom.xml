@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ru.vyukov</groupId>
-	<artifactId>another-live-refresh-sample-app</artifactId>
+	<artifactId>another-live-refresh-sample-spring-secutiry-app</artifactId>
 	<version>0.0.10-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -22,11 +22,22 @@
 
 	<dependencies>
 
+
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>ru.vyukov</groupId>
 			<artifactId>another-live-refresh-spring-boot-starter</artifactId>
 			<version>0.0.10-SNAPSHOT</version>
 		</dependency>
+
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -53,6 +64,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>

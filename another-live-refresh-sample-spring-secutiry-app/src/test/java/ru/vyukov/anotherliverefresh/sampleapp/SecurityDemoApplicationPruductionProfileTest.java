@@ -1,7 +1,7 @@
 package ru.vyukov.anotherliverefresh.sampleapp;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static ru.vyukov.anotherliverefresh.sampleapp.DemoApplicationNotSpecifiedPropertyTest.SCRIPT_CODE;
+import static ru.vyukov.anotherliverefresh.sampleapp.SecurityDemoApplicationNotSpecifiedPropertyTest.SCRIPT_CODE;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("production")
-public class DemoApplicationPruductionProfileTest {
+public class SecurityDemoApplicationPruductionProfileTest {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
@@ -27,7 +27,7 @@ public class DemoApplicationPruductionProfileTest {
 	@Test
 	public void testIncludeRefreshJs() {
 		// success auth test
-		HttpHeaders headers = DemoApplicationNotSpecifiedPropertyTest.getBasicAuthHeaders();
+		HttpHeaders headers = SecurityDemoApplicationNotSpecifiedPropertyTest.getBasicAuthHeaders();
 		HttpEntity<String> request = new HttpEntity<String>(headers);
 		ResponseEntity<String> response = restTemplate.exchange("/", HttpMethod.GET, request, String.class);
 

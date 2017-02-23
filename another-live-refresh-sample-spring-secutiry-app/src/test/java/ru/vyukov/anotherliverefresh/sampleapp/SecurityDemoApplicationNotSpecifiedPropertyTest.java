@@ -20,9 +20,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes=SecurityDemoApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("default")
-public class DemoApplicationNotSpecifiedPropertyTest {
+public class SecurityDemoApplicationNotSpecifiedPropertyTest {
 
 	public static final String SCRIPT_CODE = "<script src=\"/alr/refresh.js\">";
 
