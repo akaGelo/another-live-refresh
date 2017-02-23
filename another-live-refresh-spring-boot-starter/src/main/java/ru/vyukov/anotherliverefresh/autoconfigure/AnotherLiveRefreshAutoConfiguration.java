@@ -11,7 +11,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
@@ -25,9 +24,6 @@ import ru.vyukov.anotherliverefresh.ws.LiveRefreshConnectionHandler;
 @EnableWebSocket
 @EnableConfigurationProperties(AnotherLiveRefreshProperties.class)
 public class AnotherLiveRefreshAutoConfiguration implements WebSocketConfigurer {
-
-	@Autowired
-	private AnotherLiveRefreshProperties properties;
 
 	@Bean
 	public FilterRegistrationBean registerCorsFilter(LiveRefreshIncludeFilter filter) {
@@ -51,13 +47,14 @@ public class AnotherLiveRefreshAutoConfiguration implements WebSocketConfigurer 
 	}
 
 	@Bean
-	public FileChangeListenerService classPathChangeListenerService() throws IOException, URISyntaxException {
+	public FileChangeListenerService classPathChangeListenerService(@Autowired AnotherLiveRefreshProperties properties)
+			throws IOException, URISyntaxException {
 		URL[] urls = ((URLClassLoader) (Thread.currentThread().getContextClassLoader())).getURLs();
+		
 		FileChangeListenerServiceImpl fileChangeListenerServiceImpl = new FileChangeListenerServiceImpl(
-				Arrays.asList(urls));
+				Arrays.asList(urls), properties);
 
 		fileChangeListenerServiceImpl.addFileChangeListener(liveRefreshwebSocketHandler());
-
 		return fileChangeListenerServiceImpl;
 	}
 

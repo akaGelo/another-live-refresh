@@ -26,6 +26,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.vyukov.anotherliverefresh.autoconfigure.AnotherLiveRefreshProperties;
 
 @Slf4j
 public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
@@ -39,7 +40,11 @@ public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 
 	private Set<FileChangeListener> fileChangeListeners = new HashSet<>();
 
-	public FileChangeListenerServiceImpl(java.util.List<URL> urls) throws IOException, URISyntaxException {
+	private AnotherLiveRefreshProperties conf;
+
+	public FileChangeListenerServiceImpl(java.util.List<URL> urls, AnotherLiveRefreshProperties conf)
+			throws IOException, URISyntaxException {
+		this.conf = conf;
 		watchService = FileSystems.getDefault().newWatchService();
 
 		// регистрируем каталоги рекурсивно
@@ -81,23 +86,7 @@ public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 			// Итерации для каждого события
 			for (WatchEvent<?> event : key.pollEvents()) {
 
-				// путь до наблюдаемой папки
-				Path dir = (Path) key.watchable();
-				Path fullPath = dir.resolve((Path) event.context());
-
-				Kind<?> kind = event.kind();
-
-				log.debug("FS event: " + kind.name() + " " + fullPath);
-				fileChangeListeners.forEach(l -> l.fileChange(fullPath));
-
-				if ("ENTRY_CREATE".equals(kind.name())) {
-					// регистрация новго каталога
-					try {
-						Files.walkFileTree(fullPath, this);
-					} catch (IOException e) {
-						log.error("watch register error", e);
-					}
-				}
+				onFsEvent(key, event);
 			}
 			// Сброс ключа важен для получения последующих уведомлений
 			key.reset();
@@ -107,6 +96,29 @@ public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 			watchService.close();
 		} catch (IOException e) {
 			log.error("watchService close problem", e);
+		}
+	}
+
+	private void onFsEvent(WatchKey key, WatchEvent<?> event) {
+		Path dir = (Path) key.watchable();
+		Path fullPath = dir.resolve((Path) event.context());
+		Kind<?> kind = event.kind();
+
+		if (conf.isIgnorePath(fullPath)) {
+			log.debug("Ignore FS event: " + kind.name() + " " + fullPath);
+			return;
+		}
+
+		log.debug("FS event: " + kind.name() + " " + fullPath);
+		fileChangeListeners.forEach(l -> l.fileChange(fullPath));
+
+		if ("ENTRY_CREATE".equals(kind.name())) {
+			// регистрация новго каталога
+			try {
+				Files.walkFileTree(fullPath, this);
+			} catch (IOException e) {
+				log.error("watch register error", e);
+			}
 		}
 	}
 

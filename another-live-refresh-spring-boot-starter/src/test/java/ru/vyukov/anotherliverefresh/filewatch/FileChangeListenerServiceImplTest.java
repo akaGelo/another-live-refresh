@@ -17,6 +17,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import ru.vyukov.anotherliverefresh.autoconfigure.AnotherLiveRefreshProperties;
+
 @RunWith(MockitoJUnitRunner.class)
 public class FileChangeListenerServiceImplTest {
 
@@ -28,11 +30,14 @@ public class FileChangeListenerServiceImplTest {
 	@Mock
 	private FileChangeListener fileChangeListener;
 
+	@Mock
+	private AnotherLiveRefreshProperties properties;
+
 	private FileChangeListenerServiceImpl fileChangeListenerServiceImpl;
 
 	@Before
 	public void before() throws IOException, URISyntaxException {
-		fileChangeListenerServiceImpl = new FileChangeListenerServiceImpl(urls);
+		fileChangeListenerServiceImpl = new FileChangeListenerServiceImpl(urls, properties);
 		fileChangeListenerServiceImpl.addFileChangeListener(fileChangeListener);
 	}
 
