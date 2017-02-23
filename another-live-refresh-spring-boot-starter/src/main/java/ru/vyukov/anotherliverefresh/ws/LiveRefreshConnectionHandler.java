@@ -13,6 +13,14 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import lombok.extern.slf4j.Slf4j;
 import ru.vyukov.anotherliverefresh.filewatch.FileChangeListener;
 
+/**
+ * WebSocket Handler, упраляющий подписчиками на обновления. <br/>
+ * Подписывает подключившиеся сессии на обновления и рассылает им команды при
+ * получении события fileChange
+ * 
+ * @author gelo
+ *
+ */
 @Slf4j
 public class LiveRefreshConnectionHandler extends TextWebSocketHandler implements FileChangeListener {
 
@@ -30,12 +38,6 @@ public class LiveRefreshConnectionHandler extends TextWebSocketHandler implement
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
 		sessions.remove(session);
 
-	}
-
-	@Override
-	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-
-		super.handleTextMessage(session, message);
 	}
 
 	private void sendRefreshMessage(WebSocketSession session) {

@@ -1,4 +1,4 @@
-package demo;
+package ru.vyukov.anotherliverefresh.sampleapp;
 
 import java.util.Random;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DemoApplication {
 
 	private Random random = new Random();
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
@@ -21,7 +21,7 @@ public class DemoApplication {
 	@RequestMapping("/")
 	public String home(Model model) {
 		model.addAttribute("rnd", random.nextInt());
-		
+
 		return "index";
 	}
 

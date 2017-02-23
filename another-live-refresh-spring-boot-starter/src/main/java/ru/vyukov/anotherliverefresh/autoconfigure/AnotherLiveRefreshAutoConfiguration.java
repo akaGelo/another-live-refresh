@@ -7,6 +7,7 @@ import java.net.URLClassLoader;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,7 @@ import ru.vyukov.anotherliverefresh.ws.LiveRefreshConnectionHandler;
 
 @Configuration
 @EnableWebSocket
+@ConditionalOnProperty(value = "liverefresh.enable", matchIfMissing = true)
 @EnableConfigurationProperties(AnotherLiveRefreshProperties.class)
 public class AnotherLiveRefreshAutoConfiguration implements WebSocketConfigurer {
 
@@ -50,7 +52,7 @@ public class AnotherLiveRefreshAutoConfiguration implements WebSocketConfigurer 
 	public FileChangeListenerService classPathChangeListenerService(@Autowired AnotherLiveRefreshProperties properties)
 			throws IOException, URISyntaxException {
 		URL[] urls = ((URLClassLoader) (Thread.currentThread().getContextClassLoader())).getURLs();
-		
+
 		FileChangeListenerServiceImpl fileChangeListenerServiceImpl = new FileChangeListenerServiceImpl(
 				Arrays.asList(urls), properties);
 

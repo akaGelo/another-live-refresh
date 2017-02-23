@@ -7,16 +7,21 @@ import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.AntPathMatcher;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
-@Data
 @ConfigurationProperties("liverefresh")
 public class AnotherLiveRefreshProperties {
 
 	private final AntPathMatcher antPathMatcher = new AntPathMatcher();
 
-	private boolean enable = true;
+	/**
+	 * Active Live Refresh on true
+	 */
+	@Setter
+	@Getter
+	private boolean enable;
 
 	/**
 	 * default:
@@ -29,6 +34,8 @@ public class AnotherLiveRefreshProperties {
 	 * </pre>
 	 */
 	@NonNull
+	@Getter
+	@Setter
 	private List<String> ignoreFileChanges = Arrays.asList("/**/application.properties", "/**/application.yml",
 			"/**/git.properties");
 

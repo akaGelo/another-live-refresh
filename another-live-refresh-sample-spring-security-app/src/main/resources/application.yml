@@ -1,27 +1,22 @@
 #default value = true
 #liverefresh:
 #  enable: true
-  
-  
+
+
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: qwerty
+    
+    
 ---
 #production profile
  
 spring:
   profiles: production
-  thymeleaf:
-    cache: false
 
 liverefresh:
     enable: false
-
-
----
-#force enable profile
- 
-spring:
-  profiles: force-enable
-
-liverefresh:
-    enable: true
-
     

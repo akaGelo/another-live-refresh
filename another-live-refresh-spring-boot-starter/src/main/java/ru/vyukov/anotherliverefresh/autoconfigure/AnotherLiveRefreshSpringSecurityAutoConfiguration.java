@@ -1,14 +1,17 @@
 package ru.vyukov.anotherliverefresh.autoconfigure;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.vyukov.anotherliverefresh.ws.LiveRefreshConnectionHandler;
 
 @Configuration
 @ConditionalOnClass(WebSecurityConfigurer.class)
+@ConditionalOnBean(LiveRefreshConnectionHandler.class)
 @Slf4j
 public class AnotherLiveRefreshSpringSecurityAutoConfiguration implements WebSecurityConfigurer<WebSecurity> {
 

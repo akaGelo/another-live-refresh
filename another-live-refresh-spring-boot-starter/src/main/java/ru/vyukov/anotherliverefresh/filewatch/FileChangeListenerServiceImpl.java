@@ -28,6 +28,17 @@ import javax.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import ru.vyukov.anotherliverefresh.autoconfigure.AnotherLiveRefreshProperties;
 
+/**
+ * TODO перевод
+ * 
+ * Этот сервис следит за изменениями в classpath и уведомляет подписчиков при
+ * обнаружении. <br/>
+ * <br/>
+ * Созданные каталоги добавляются в список отслеживания.
+ * 
+ * @author gelo
+ *
+ */
 @Slf4j
 public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 		implements FileChangeListenerService, Runnable {
@@ -47,7 +58,7 @@ public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 		this.conf = conf;
 		watchService = FileSystems.getDefault().newWatchService();
 
-		// регистрируем каталоги рекурсивно
+		// recursive register all classpath folders
 		for (URL url : urls) {
 			Files.walkFileTree(Paths.get(url.toURI()), this);
 		}
@@ -85,10 +96,9 @@ public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 			}
 			// Итерации для каждого события
 			for (WatchEvent<?> event : key.pollEvents()) {
-
 				onFsEvent(key, event);
 			}
-			// Сброс ключа важен для получения последующих уведомлений
+			//
 			key.reset();
 		}
 

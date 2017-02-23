@@ -1,3 +1,22 @@
+[![Build Status](https://travis-ci.org/akaGelo/another-live-refresh.svg?branch=master)](https://travis-ci.org/akaGelo/another-live-refresh)
+
+
+```
+<dependency>
+    <groupId>ru.vyukov</groupId>
+    <artifactId>another-live-refresh-spring-boot-starter</artifactId>
+    <version>0.1</version>
+    <optional>true</optional>
+</dependency>
+
+```
+
+and disable in develipment profile
+```
+liverefresh:
+  enable: true
+```
+
 RUSSIAN
 
 Гифка с захватом экрана

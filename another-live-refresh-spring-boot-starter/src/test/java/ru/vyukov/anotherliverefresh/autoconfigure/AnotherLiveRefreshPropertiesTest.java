@@ -1,6 +1,7 @@
 package ru.vyukov.anotherliverefresh.autoconfigure;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -19,24 +20,22 @@ public class AnotherLiveRefreshPropertiesTest {
 
 	@Test
 	public void testIsIgnorePath() throws Exception {
-		properties.setIgnoreFileChanges(Arrays.asList("/**/application.yml","startString.yml"));
-		
+		properties.setIgnoreFileChanges(Arrays.asList("/**/application.yml", "startString.yml"));
+
 		assertTrue(properties.isIgnorePath(Paths.get("/folder/app/application.yml")));
 		assertFalse(properties.isIgnorePath(Paths.get("application.yml")));
-		
-		
+
 		assertTrue(properties.isIgnorePath(Paths.get("startString.yml")));
 		assertFalse(properties.isIgnorePath(Paths.get("/othreFolder/startString.yml")));
 	}
-	
-	
+
 	@Test
-	
-	public void testDefaultConfig(){
+
+	public void testDefaultConfig() {
 		assertTrue(properties.isIgnorePath(Paths.get("/folder/app/application.yml")));
 		assertTrue(properties.isIgnorePath(Paths.get("/folder/app/application.properties")));
 		assertTrue(properties.isIgnorePath(Paths.get("/folder/app/git.properties")));
-		
+
 	}
 
 }
