@@ -10,10 +10,11 @@
 
 	<modules>
 		<module>another-live-refresh-spring-boot-starter</module>
-		
+
 		<module>another-live-refresh-sample-app</module>
+
 		<module>another-live-refresh-sample-spring-secutiry-app</module>
-		
+
 	</modules>
 
 </project>

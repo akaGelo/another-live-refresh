@@ -1,6 +1,15 @@
 #default value = true
 #liverefresh:
 #  enable: true
+#  ignore-file-changes:
+#      - "/**/application.yml"
+#      - "/**/git.properties"
+
+
+
+logging:
+  level:
+    ru.vyukov.anotherliverefresh: DEBUG
   
   
 ---
@@ -13,6 +22,11 @@ spring:
 
 liverefresh:
     enable: false
+
+
+
+
+
 
 
 ---

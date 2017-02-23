@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.test</groupId>
-	<artifactId>another-live-refresh-sample-spring-security-app</artifactId>
+	<artifactId>another-live-refresh-sample-spring-secutiry-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -23,17 +23,31 @@
 
 	<dependencies>
 
-		<dependency>
-			<!-- sample app witout spring security -->
-			<groupId>org.test</groupId>
-			<artifactId>another-live-refresh-sample-app</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+
 
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>ru.vyukov</groupId>
+			<artifactId>another-live-refresh-spring-boot-starter</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
 
