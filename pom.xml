@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.vyukov</groupId>
 	<artifactId>another-live-refresh</artifactId>
-	<version>0.0.9-SNAPSHOT</version>
+	<version>0.0.9</version>
 	<packaging>pom</packaging>
 	<name>another live refresh parent project</name>
 	
