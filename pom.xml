@@ -3,9 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.vyukov</groupId>
 	<artifactId>another-live-refresh</artifactId>
-	<version>0.0.10-SNAPSHOT</version>
+	<version>0.0.9-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>another live refresh parent project</name>
+	
+	<description>alternative for livereload.com for spring boot projects</description>
 
 	<modules>
 		<module>another-live-refresh-spring-boot-starter</module>
