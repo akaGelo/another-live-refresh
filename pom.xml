@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.vyukov</groupId>
 	<artifactId>another-live-refresh</artifactId>
-	<version>0.0.8-SNAPSHOT</version>
+	<version>0.0.8</version>
 	<packaging>pom</packaging>
 	<name>another live refresh parent project</name>
 
@@ -19,7 +19,7 @@
 	<scm>
 		<url>https://github.com/akaGelo/another-live-refresh</url>
 		<connection>scm:git:https://github.com/akaGelo/another-live-refresh</connection>
-	  <tag>HEAD</tag>
+	  <tag>another-live-refresh-0.0.8</tag>
   </scm>
 
 	<url>https://github.com/akaGelo/another-live-refresh</url>
