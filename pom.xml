@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.vyukov</groupId>
 	<artifactId>another-live-refresh</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>another live refresh parent project</name>
 
@@ -19,8 +20,7 @@
 	<scm>
 		<url>https://github.com/akaGelo/another-live-refresh</url>
 		<connection>scm:git:https://github.com/akaGelo/another-live-refresh</connection>
-	  <tag>HEAD</tag>
-  </scm>
+	</scm>
 
 	<url>https://github.com/akaGelo/another-live-refresh</url>
 
@@ -50,12 +50,13 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.github.danielflower.mavenplugins</groupId>
-				<artifactId>multi-module-maven-release-plugin</artifactId>
-				<version>2.1.2</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
 			</plugin>
 		</plugins>
 	</build>
+
 
 	<profiles>
 
