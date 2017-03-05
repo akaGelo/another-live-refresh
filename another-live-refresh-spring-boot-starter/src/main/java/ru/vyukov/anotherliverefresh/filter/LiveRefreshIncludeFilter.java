@@ -32,7 +32,7 @@ public class LiveRefreshIncludeFilter implements Filter {
 			content = content.replace("</head>", REFRESH_CODE + "\n</head>");
 		}
 
-		response.setContentLength(content.length());
+		response.setContentLength(content.getBytes().length);
 		response.getWriter().write(content);
 
 	}
