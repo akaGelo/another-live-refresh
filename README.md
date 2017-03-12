@@ -1,42 +1,55 @@
 [![Build Status](https://travis-ci.org/akaGelo/another-live-refresh.svg?branch=master)](https://travis-ci.org/akaGelo/another-live-refresh)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.vyukov/another-live-refresh/badge.svg)](https://maven-badges.herokuapp.com/maven-central/ru.vyukov/another-live-refresh)
 
-
-```
+```xml
 <dependency>
     <groupId>ru.vyukov</groupId>
     <artifactId>another-live-refresh-spring-boot-starter</artifactId>
-    <version>0.1</version>
+    <version>0.1.1</version>
     <optional>true</optional>
 </dependency>
 
 ```
 
-and disable in develipment profile
-```
+and disable in production profile
+```yml
+logging:
+  level:
+    ru.vyukov.anotherliverefresh: DEBUG
+
+spring:
+  thymeleaf:
+    cache: false
+
+
+#liverefresh:
+#    enable: true is default
+  
+---
+#production profile
+ 
+spring:
+  profiles: production
+  thymeleaf:
+    cache: true
+
 liverefresh:
-  enable: true
+    enable: false
+
 ```
+
+![demo gif](https://raw.githubusercontent.com/akaGelo/another-live-refresh/master/demo.gif)
+
+ENGLISH
+
+
 
 RUSSIAN
 
-Гифка с захватом экрана
 
 
-Это дополнение к Spring Boot Developer Tools. 
-
-Оно предназначено для автоматического обновления страницы в браузере при обнаружении изменений в проекте.
-
-Похоже на livereload.com, вдохновлено им, но в отличии от livereload не занимает определенный порт.  
-Каждое приложение ожидает соедиения на своем порту. Это очень удобно при работе с несколькими проектами одновременно 
-(к примеру админ панель и сайт).
+Этот проект вдохновлен livereload.com, однако в отличии от него встраивается в приложение в виде maven зависимости.
+Преимущество перед реализацией из Spring Developer Tools, заключается в отсутствии привязки к соединению на определенный порт, что позволяет использовать продукт одновременно в нескольких приложениях.Так же не требуется утановка расширений в браузере.
 
 
-Поведение опирается на Dev Tools, (должно отключатсья в production автоматически).
-Есть возможность ручного отключения:
 
-
-Работоспособность тестировалась со spring boot 1.5.1
-При различии версий Developer Tools могут быть проблемы 
-
-
-ENGLISH

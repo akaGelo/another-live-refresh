@@ -10,12 +10,18 @@ security:
     name: user
     password: qwerty
     
+spring:
+  thymeleaf:
+    cache: false
+  
     
 ---
 #production profile
  
 spring:
   profiles: production
+  thymeleaf:
+    cache: true
 
 liverefresh:
     enable: false

@@ -21,6 +21,11 @@ import ru.vyukov.anotherliverefresh.filewatch.FileChangeListenerServiceImpl;
 import ru.vyukov.anotherliverefresh.filter.LiveRefreshIncludeFilter;
 import ru.vyukov.anotherliverefresh.ws.LiveRefreshConnectionHandler;
 
+/**
+ * 
+ * @author gelo
+ *
+ */
 @Configuration
 @EnableWebSocket
 @ConditionalOnProperty(value = "liverefresh.enable", matchIfMissing = true)

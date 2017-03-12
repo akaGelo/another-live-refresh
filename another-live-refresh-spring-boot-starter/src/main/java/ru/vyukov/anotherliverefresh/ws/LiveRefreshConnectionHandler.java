@@ -14,9 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.vyukov.anotherliverefresh.filewatch.FileChangeListener;
 
 /**
- * WebSocket Handler, упраляющий подписчиками на обновления. <br/>
- * Подписывает подключившиеся сессии на обновления и рассылает им команды при
- * получении события fileChange
+ * WebSocket Handler, which manages subscribers to updates
  * 
  * @author gelo
  *
