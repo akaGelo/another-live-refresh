@@ -27,13 +27,17 @@ public class LiveRefreshIncludeFilter implements Filter {
 
 		chain.doFilter(request, capturingResponseWrapper);
 
-		String content = capturingResponseWrapper.getAsString();
 		if (response.getContentType() != null && response.getContentType().contains("text/html")) {
+			String content = capturingResponseWrapper.getAsString();
 			content = content.replace("</head>", REFRESH_CODE + "\n</head>");
-		}
 
-		response.setContentLength(content.getBytes().length);
-		response.getWriter().write(content);
+			response.setContentLength(content.getBytes().length);
+			response.getWriter().write(content);
+		} else {
+			byte[] content = capturingResponseWrapper.getAsBytes();
+			response.setContentLength(content.length);
+			response.getOutputStream().write(content);
+		}
 
 	}
 
