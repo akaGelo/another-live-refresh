@@ -1,4 +1,4 @@
-package ru.vyukov.anotherliverefresh.filter;
+package ru.vyukov.anotherliverefresh.interceptor;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
