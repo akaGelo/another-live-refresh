@@ -4,7 +4,7 @@
 
 	<groupId>ru.vyukov</groupId>
 	<artifactId>another-live-refresh-sample-spring-secutiry-app</artifactId>
-	<version>0.2.1</version>
+	<version>0.2.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>ru.vyukov</groupId>
 			<artifactId>another-live-refresh-spring-boot-starter</artifactId>
-			<version>0.2.1</version>
+			<version>0.2.2-SNAPSHOT</version>
 		</dependency>
 
 
@@ -77,6 +77,6 @@
 	</build>
 
   <scm>
-    <tag>another-live-refresh-0.2.1</tag>
+    <tag>another-live-refresh-0.0.9</tag>
   </scm>
 </project>
