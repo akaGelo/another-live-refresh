@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.servlet.View;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -35,6 +36,7 @@ import ru.vyukov.anotherliverefresh.ws.LiveRefreshConnectionHandler;
 @ConditionalOnProperty(value = "liverefresh.enable", matchIfMissing = true)
 @EnableConfigurationProperties(AnotherLiveRefreshProperties.class)
 @EnableAspectJAutoProxy(proxyTargetClass = true)
+@DependsOn(value = "error")
 public class AnotherLiveRefreshAutoConfiguration implements WebSocketConfigurer {
 
 	@Override
