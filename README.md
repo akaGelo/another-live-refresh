@@ -5,7 +5,7 @@
 <dependency>
     <groupId>ru.vyukov</groupId>
     <artifactId>another-live-refresh-spring-boot-starter</artifactId>
-    <version>0.1.1</version>
+    <version>0.2.1</version>
     <optional>true</optional>
 </dependency>
 

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.vyukov</groupId>
 	<artifactId>another-live-refresh-spring-boot-starter</artifactId>
-	<version>0.1.3-SNAPSHOT</version>
+	<version>0.2.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>another-live-refresh-spring-boot-starter</name>
 
@@ -74,6 +74,10 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 
 
 		<dependency>
