@@ -1,4 +1,4 @@
-package ru.vyukov.anotherliverefresh.interceptor;
+package ru.vyukov.anotherliverefresh.wrap;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -73,5 +73,7 @@ public class HtmlResponseWrapper extends HttpServletResponseWrapper {
 	public String getAsString() throws IOException {
 		return new String(getAsBytes(), getCharacterEncoding());
 	}
+	
+	
 
 }

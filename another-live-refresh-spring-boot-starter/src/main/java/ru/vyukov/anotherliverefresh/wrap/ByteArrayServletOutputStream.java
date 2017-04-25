@@ -1,4 +1,4 @@
-package ru.vyukov.anotherliverefresh.interceptor;
+package ru.vyukov.anotherliverefresh.wrap;
 
 import java.io.IOException;
 import java.io.OutputStream;
