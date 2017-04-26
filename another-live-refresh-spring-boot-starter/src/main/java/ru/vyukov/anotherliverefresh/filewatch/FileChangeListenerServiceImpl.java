@@ -29,12 +29,10 @@ import lombok.extern.slf4j.Slf4j;
 import ru.vyukov.anotherliverefresh.autoconfigure.AnotherLiveRefreshProperties;
 
 /**
- * TODO перевод
- * 
- * Этот сервис следит за изменениями в classpath и уведомляет подписчиков при
- * обнаружении. <br/>
+ * This service monitors changes in the classpath and notifies subscribers when
+ * detected. <br/>
  * <br/>
- * Созданные каталоги добавляются в список отслеживания.
+ * The created directories are added to the tracking list.
  * 
  * @author gelo
  *
@@ -94,7 +92,7 @@ public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 			if (null == key) {
 				continue;
 			}
-			// Итерации для каждого события
+			//iIterations for each event
 			for (WatchEvent<?> event : key.pollEvents()) {
 				onFsEvent(key, event);
 			}
@@ -123,7 +121,7 @@ public class FileChangeListenerServiceImpl extends SimpleFileVisitor<Path>
 		fileChangeListeners.forEach(l -> l.fileChange(fullPath));
 
 		if ("ENTRY_CREATE".equals(kind.name())) {
-			// регистрация новго каталога
+			// register created catalog
 			try {
 				Files.walkFileTree(fullPath, this);
 			} catch (IOException e) {
