@@ -18,7 +18,7 @@ socket.onopen = function() {
 
 socket.onmessage = function(event) {
 	console.log("another-live-refresh refresh. "  + help_uri);
-	window.location.href = window.location.href;
+	window.location.reload(true);
 }
 
 socket.onclose = function(event) {
