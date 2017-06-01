@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -38,17 +37,9 @@ import ru.vyukov.anotherliverefresh.ws.LiveRefreshConnectionHandler;
 @DependsOn(value = "error")
 public class AnotherLiveRefreshAutoConfiguration implements WebSocketConfigurer {
 
-	@Bean
+	@Bean(name = DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
 	public DispatcherServlet dispatcherServlet() {
 		return new ResponseWrappedDispatcherServlet();
-	}
-
-	@Bean
-	public ServletRegistrationBean dispatcherServletRegistration() {
-		ServletRegistrationBean registration = new ServletRegistrationBean(dispatcherServlet());
-		registration.setLoadOnStartup(0);
-		registration.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME);
-		return registration;
 	}
 
 	@Override

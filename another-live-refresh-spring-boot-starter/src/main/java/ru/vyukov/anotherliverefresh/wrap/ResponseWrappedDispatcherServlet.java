@@ -21,6 +21,14 @@ public class ResponseWrappedDispatcherServlet extends DispatcherServlet {
 	@Override
 	protected void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse originalResponse)
 			throws Exception {
+		boolean isGetRequest = "GET".equals(request.getMethod());
+		// not get request
+		if (!isGetRequest) {
+			// not modify,multipart problems
+			super.render(mv, request, originalResponse);
+			return;
+		}
+
 		// 1. wrap response
 		HtmlResponseWrapper response = new HtmlResponseWrapper((HttpServletResponse) originalResponse);
 
