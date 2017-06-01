@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.vyukov</groupId>
 	<artifactId>another-live-refresh-spring-boot-starter</artifactId>
-	<version>0.2.5</version>
+	<version>0.2.6-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>another-live-refresh-spring-boot-starter</name>
 
@@ -35,7 +35,7 @@
 
 	<scm>
 		<url>https://github.com/akaGelo/another-live-refresh</url>
-		<tag>another-live-refresh-0.2.5</tag>
+		<tag>another-live-refresh-0.0.9</tag>
 	</scm>
 
 
