@@ -7,13 +7,11 @@ import java.net.URLClassLoader;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -35,7 +33,9 @@ import ru.vyukov.anotherliverefresh.ws.LiveRefreshConnectionHandler;
 @EnableConfigurationProperties(AnotherLiveRefreshProperties.class)
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @DependsOn(value = "error")
+@AutoConfigureBefore(DispatcherServletAutoConfiguration.class)
 public class AnotherLiveRefreshAutoConfiguration implements WebSocketConfigurer {
+
 
 	@Bean(name = DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
 	public DispatcherServlet dispatcherServlet() {

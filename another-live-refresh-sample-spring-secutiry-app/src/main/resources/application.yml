@@ -2,14 +2,6 @@
 #liverefresh:
 #  enable: true
 
-
-security:
-  basic:
-    enabled: true
-  user:
-    name: user
-    password: qwerty
-    
 spring:
   thymeleaf:
     cache: false
